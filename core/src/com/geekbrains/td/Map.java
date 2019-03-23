@@ -9,6 +9,9 @@ import java.io.BufferedReader;
 import java.io.IOException;
 
 public class Map {
+
+    private GameScreen gameScreen;
+
     private final int MAP_WIDTH = 16;
     private final int MAP_HEIGHT = 9;
 
@@ -23,7 +26,8 @@ public class Map {
     private int selectedX = 0;
     private int selectedY = 0;
 
-    public Map(String mapName, TextureAtlas textureAtlas) {
+    public Map(GameScreen gameScreen, String mapName, TextureAtlas textureAtlas) {
+        this.gameScreen = gameScreen;
         data = new byte[MAP_WIDTH][MAP_HEIGHT];
         textureRegionGrass = textureAtlas.findRegion("grass");
         textureRegionRoad = textureAtlas.findRegion("road");
@@ -49,8 +53,13 @@ public class Map {
 
     public void update(float dt) {
         if (Gdx.input.justTouched()) {
-            selectedX = Gdx.input.getX() / 80;
-            selectedY = (720 - Gdx.input.getY()) / 80;
+            if (!((selectedX == Gdx.input.getX() / 80) && selectedY == (720 - Gdx.input.getY()) / 80)) {
+                selectedX = Gdx.input.getX() / 80;
+                selectedY = (720 - Gdx.input.getY()) / 80;
+            } else {
+                gameScreen.getTurret().setCellX(Gdx.input.getX() / 80);
+                gameScreen.getTurret().setCellY((720 - Gdx.input.getY()) / 80);
+            }
         }
     }
 

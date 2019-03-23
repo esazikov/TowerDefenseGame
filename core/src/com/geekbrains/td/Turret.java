@@ -18,11 +18,21 @@ public class Turret {
         this.cellY = 4;
     }
 
+    public void setCellX(int cellX) {
+        this.cellX = cellX;
+    }
+
+    public void setCellY(int cellY) {
+        this.cellY = cellY;
+    }
+
     public void render(SpriteBatch batch) {
+       // angle = gameScreen.getMonster().getPosition();
         batch.draw(texture, cellX * 80, cellY * 80, 40, 40, 80, 80, 1, 1, angle);
     }
 
     public void update(float dt) {
-        angle += 180.0 * dt;
+
+        // angle += 180.0 * dt;
     }
 }

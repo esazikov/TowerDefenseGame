@@ -22,9 +22,13 @@ public class GameScreen implements Screen {
     @Override
     public void show() {
         TextureAtlas atlas = new TextureAtlas("images/game.pack");
-        this.map = new Map("level01.map", atlas);
+        this.map = new Map(this,"level01.map", atlas);
         this.monster = new Monster(this, atlas);
         this.turret = new Turret(this, atlas);
+    }
+
+    public Turret getTurret() {
+        return turret;
     }
 
     @Override
